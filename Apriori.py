@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+import operator
+
 #The dict {} in python such as:my_information = {'name': 'Pusheen the Cat', 'country': 'USA', 'favorite_numbers': [42, 105]}
 #name -> Pusheen the Cat (Key is name , value is Pusheen the cat)
 def Apriori_gen(Itemset, lenght):
@@ -55,6 +58,8 @@ C1.keys().sort()
 L = []
 L1 = Apriori_prune(C1,minsupport)
 L = Apriori_gen(L1,len(L1))
+a = Apriori_count_subset(L1,len(L1))
+print sorted(a.items(), key=operator.itemgetter(1), reverse=True)
 print '===================================='
 print 'Frequent 1-itemset is',L1
 print '===================================='
@@ -62,6 +67,7 @@ k=2
 while L != []:
     C = dict()
     C = Apriori_count_subset(L,len(L))
+    print sorted(C.items(), key=operator.itemgetter(1), reverse=True)
     fruquent_itemset = []
     fruquent_itemset = Apriori_prune(C,minsupport)
     print '===================================='
